@@ -18,7 +18,7 @@ module.exports = {
 
 		let prefix,
 			spl = message.content.split(' ');
-		prefix = (client.prefix && client.prefix[message.guild.id]) ?? defaultprefix;
+		prefix = ((client.prefix && client.prefix[message.guild.id]) ?? globalFunc.defaultprefix) ?? '..';
 
 		/* default_prefix can be found in functions/botDefaultConfig */
 
