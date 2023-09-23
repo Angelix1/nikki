@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { Client, Partials, GatewayIntentBits, Collection, LimitedCollection, ActivityType  } = require('discord.js');
 
-const requiredIntents = require('./intents');
+// const requiredIntents = require('./intents');
 const config = require('./config');
 const eventPath = process.cwd() + '/events';
 const CustomEventFolder = fs.readdirSync(eventPath);
