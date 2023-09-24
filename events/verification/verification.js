@@ -331,6 +331,14 @@ module.exports = {
 				
 				if(type == 'approve') {
 					try {
+						if(!member.user) {
+							const embed2 = new EmbedBuilder()
+							.setTitle('User Left')
+							.setColor('Red')
+							await int.update({ components: [] });
+							return int.followUp({ embeds: [embed2] })
+						}
+						
 						member.roles.add(mongoData[0]?.member_role)
 						const USRX_DM = await member.createDM();
 						
@@ -379,6 +387,13 @@ module.exports = {
 				}
 				if(type == 'deny') {
 					try {
+						if(!member.user) {
+							const embed2 = new EmbedBuilder()
+							.setTitle('User Left')
+							.setColor('Red')
+							await int.update({ components: [] });
+							return int.followUp({ embeds: [embed2] })
+						}
 						
 						const USRX_DM = await member.createDM();
 						
@@ -424,6 +439,13 @@ module.exports = {
 				}
 				if(type == 'reverify') {
 					try {
+						if(!member.user) {
+							const embed2 = new EmbedBuilder()
+							.setTitle('User Left')
+							.setColor('Red')
+							await int.update({ components: [] });
+							return int.followUp({ embeds: [embed2] })
+						}
 						
 						const modal = new ModalBuilder()
 						.setCustomId(`staff_resubmit_${UserID}_${int.message?.id}`)
