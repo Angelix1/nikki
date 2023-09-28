@@ -185,9 +185,9 @@ module.exports = {
         }
 //=================
     }
-    catch(e)
-    {
-      print(e)
+    catch(e) {
+			console.log(e)
+      globalFunc?.logger(e);
     }      
 //=================
   }
