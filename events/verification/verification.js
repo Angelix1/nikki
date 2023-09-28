@@ -339,7 +339,7 @@ module.exports = {
 							return int.followUp({ embeds: [embed2] })
 						}
 
-						if(member?.roles?.cache?.filter(x => x.id == mongoData[0]?.member_role) {
+						if( member?.roles?.cache?.filter(x => x.id == mongoData[0]?.member_role) ) {
 							const embed2 = new EmbedBuilder()
 							.setTitle('User has already been approved')
 							.setColor('Red')
@@ -404,7 +404,7 @@ module.exports = {
 							return int.followUp({ embeds: [embed2] })
 						}
 						
-						if(member?.roles?.cache?.filter(x => x.id == mongoData[0]?.member_role) {
+						if( member?.roles?.cache?.filter(x => x.id == mongoData[0]?.member_role) ) {
 							const embed2 = new EmbedBuilder()
 							.setTitle('User has already been approved')
 							.setColor('Red')
@@ -464,7 +464,7 @@ module.exports = {
 							return int.followUp({ embeds: [embed2] })
 						}
 						
-						if(member?.roles?.cache?.filter(x => x.id == mongoData[0]?.member_role) {
+						if( member?.roles?.cache?.filter(x => x.id == mongoData[0]?.member_role) ) {
 							const embed2 = new EmbedBuilder()
 							.setTitle('User has already been approved')
 							.setColor('Red')
