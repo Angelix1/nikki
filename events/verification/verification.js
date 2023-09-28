@@ -338,6 +338,15 @@ module.exports = {
 							await int.update({ components: [] });
 							return int.followUp({ embeds: [embed2] })
 						}
+
+						if(member?.roles?.cache?.filter(x => x.id == mongoData[0]?.member_role) {
+							const embed2 = new EmbedBuilder()
+							.setTitle('User has already been approved')
+							.setColor('Red')
+							await int.update({ components: [] });
+							return int.followUp( globalFunc.sendEphemeral({ embeds: [embed2] }) )
+						}
+							
 						
 						member.roles.add(mongoData[0]?.member_role)
 						const USRX_DM = await member.createDM();
@@ -395,6 +404,14 @@ module.exports = {
 							return int.followUp({ embeds: [embed2] })
 						}
 						
+						if(member?.roles?.cache?.filter(x => x.id == mongoData[0]?.member_role) {
+							const embed2 = new EmbedBuilder()
+							.setTitle('User has already been approved')
+							.setColor('Red')
+							await int.update({ components: [] });
+							return int.followUp( globalFunc.sendEphemeral({ embeds: [embed2] }) )
+						}
+						
 						const USRX_DM = await member.createDM();
 						
 						let customMsg = undefined;
@@ -446,6 +463,14 @@ module.exports = {
 							await int.update({ components: [] });
 							return int.followUp({ embeds: [embed2] })
 						}
+						
+						if(member?.roles?.cache?.filter(x => x.id == mongoData[0]?.member_role) {
+							const embed2 = new EmbedBuilder()
+							.setTitle('User has already been approved')
+							.setColor('Red')
+							await int.update({ components: [] });
+							return int.followUp( globalFunc.sendEphemeral({ embeds: [embed2] }) )
+						}						
 						
 						const modal = new ModalBuilder()
 						.setCustomId(`staff_resubmit_${UserID}_${int.message?.id}`)
