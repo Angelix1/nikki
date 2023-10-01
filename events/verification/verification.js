@@ -168,13 +168,14 @@ module.exports = {
 				const member = await int.guild.members.fetch(userId);
 				
 				const US_DM = await member.createDM()
-				
-				
+
 				try {
 					US_DM.send({
 						content: `It seems like your submission is denied.\nModerator Reasoning: \`${modInput}\``
 					})
 					
+					member.roles.remove(mongoData[0]?.verification_pending_role)
+										
 					await int.update({ components: [] })
 					
 					const embed = new EmbedBuilder()
@@ -237,13 +238,13 @@ module.exports = {
 					const owner = await client.users.fetch(client.owner);
 					const cx = await owner.createDM();
 					cx?.send({
-						content: `\`pending_role\` is invalid on \`${int.guild.name}\`:\`${int.guildId}\``
+						content: `\`pending_role\` is invalid on \`${int.guild.name}\`:\`${int.guildId}\` `
 					})
 
 					return int.reply( globalFunc.sendEphemeral('Error, Please contact Staff for alternative verification or open ticket.') )
 				}
 
-				if(int.member.roles.find(x => (x.id == pendingRole || x.id == state2.id) )) {
+				if(int.member.roles.find(x => x.id == state2.id)) {
 					const embedex = new EmbedBuilder()
 					.setTitle('You already submitted your verification. Please wait for staff to review it.')
 					.setColor('Random')
@@ -367,6 +368,8 @@ module.exports = {
 							
 						
 						member.roles.add(mongoData[0]?.member_role)
+						member.roles.remove(mongoData[0]?.verification_pending_role)
+
 						const USRX_DM = await member.createDM();
 						
 						let customMsg = undefined;
@@ -442,7 +445,9 @@ module.exports = {
 						USRX_DM.send(
 							customMsg ?? `It seems like your submission denied on ${int.guild.name}. But you can reapplied again.`
 						)
-						
+
+						member.roles.remove(mongoData[0]?.verification_pending_role)
+
 						await int.update({ components: [] });
 						
 						// console.log(int)
