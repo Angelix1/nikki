@@ -363,10 +363,10 @@ module.exports = {
 
 						if( member?.roles?.cache?.find(x => x.id == mongoData[0]?.member_role) ) {
 							const embed2 = new EmbedBuilder()
-							.setTitle('User has already been approved')
+							.setTitle('User already verified')
 							.setColor('Red')
 							await int.update({ components: [] });
-							return int.followUp( globalFunc.sendEphemeral({ embeds: [embed2] }) )
+							return int.followUp({ embeds: [embed2] })
 						}
 							
 						
@@ -430,10 +430,10 @@ module.exports = {
 						
 						if( member?.roles?.cache?.find(x => x.id == mongoData[0]?.member_role) ) {
 							const embed2 = new EmbedBuilder()
-							.setTitle('User has already been approved')
+							.setTitle('User already verified')
 							.setColor('Red')
 							await int.update({ components: [] });
-							return int.followUp( globalFunc.sendEphemeral({ embeds: [embed2] }) )
+							return int.followUp({ embeds: [embed2] })
 						}
 						
 						const USRX_DM = await member.createDM();
@@ -492,10 +492,10 @@ module.exports = {
 						
 						if( member?.roles?.cache?.find(x => x.id == mongoData[0]?.member_role) ) {
 							const embed2 = new EmbedBuilder()
-							.setTitle('User has already been approved')
+							.setTitle('User already verified')
 							.setColor('Red')
 							await int.update({ components: [] });
-							return int.followUp( globalFunc.sendEphemeral({ embeds: [embed2] }) )
+							return int.followUp({ embeds: [embed2] })
 						}						
 						
 						const modal = new ModalBuilder()
