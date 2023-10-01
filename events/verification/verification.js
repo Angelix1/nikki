@@ -244,7 +244,7 @@ module.exports = {
 					return int.reply( globalFunc.sendEphemeral('Error, Please contact Staff for alternative verification or open ticket.') )
 				}
 
-				if(int.member.roles.find(x => x.id == state2.id)) {
+				if(int.member.roles.cache.find(x => x.id == state2.id)) {
 					const embedex = new EmbedBuilder()
 					.setTitle('You already submitted your verification. Please wait for staff to review it.')
 					.setColor('Random')
