@@ -224,9 +224,35 @@ module.exports = {
 			}
 		}
 		if(int.isButton()) {
-			
+		
+			const db = await mongodb?.db('nikki');
+			const coll = db.collection('setting');
+			const mongoData = await coll.find({ server_id: int.guildId })?.toArray();
+
 			if (int.customId == 'start_verification') {
-				
+				const pendingRole = mongoData[0]?.verification_pending_role;
+				const state2 = await int.member.guild.roles.fetch(pendingRole).catch(() => false)
+				if(!pendingRole || !state2 ) {
+
+					const owner = await client.users.fetch(client.owner);
+					const cx = await owner.createDM();
+					cx?.send({
+						content: `\`pending_role\` is invalid on \`${int.guild.name}\`:\`${int.guildId}\``
+					})
+
+					return int.reply( globalFunc.sendEphemeral('Error, Please contact Staff for alternative verification or open ticket.') )
+				}
+
+				if(int.member.roles.find(x => (x.id == pendingRole || x.id == state2.id) )) {
+					const embedex = new EmbedBuilder()
+					.setTitle('You already submitted your verification. Please wait for staff to review it.')
+					.setColor('Random')
+
+					return int.reply(globalFunc.sendEphemeral({
+						embeds: [embedex]
+					}))
+				}
+
 				const modal = new ModalBuilder()
 				.setCustomId('verification_modal_1')
 				.setTitle('Verification Modal 1/2');
@@ -269,11 +295,7 @@ module.exports = {
 				await int.showModal(modal);
 			}
 				
-			if (int.customId == 'verification_button') {
-				
-				const db = await mongodb?.db('nikki');
-				const coll = db.collection('setting');
-				const mongoData = await coll.find({ server_id: int.guildId })?.toArray();
+			if (int.customId == 'verification_button') {			
 				const VQ = mongoData[0]?.verify_question ?? client.verificationQuestion;
 				
 				const modal = new ModalBuilder()
@@ -323,10 +345,6 @@ module.exports = {
 				const type = splitted[0];
 				
 				const Embed = new EmbedBuilder()
-				
-				const db = await mongodb?.db('nikki');
-				const coll = db.collection('setting');
-				const mongoData = await coll.find({ server_id: int.guildId })?.toArray();
 				const member = await int.guild.members.fetch(UserID);
 				
 				if(type == 'approve') {
