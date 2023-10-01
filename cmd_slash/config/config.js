@@ -68,7 +68,8 @@ ApplicationCommandType = {
 								required: true,
 								choices: [
 									choiceField('Member Role', 'member_role'),
-									choiceField('Staff Role', 'staff_role')
+									choiceField('Staff Role', 'staff_role'),
+									choiceField('Verification Pending Role', 'verification_pending_role'),
 								]
 							},
 							{
@@ -134,7 +135,8 @@ ApplicationCommandType = {
 				verification_log: 'Verification Logging',
 				general_log: 'General Logging',
 				staff_role: 'Staff Role',
-				member_role: 'Member Role'
+				member_role: 'Member Role',
+				verification_pending_role: 'Verification Pending Role'
 			}
 			
 			const subCommandGroup = int.options.getSubcommandGroup();
