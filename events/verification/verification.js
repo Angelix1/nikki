@@ -176,7 +176,7 @@ module.exports = {
 						content: `It seems like your submission is denied.\nModerator Reasoning: \`${modInput}\``
 					})
 					
-					member.roles.remove(mongoData[0]?.verification_pending_role)
+					await member.roles.remove(mongoData[0]?.verification_pending_role)
 
 					await int.update({ components: [] })
 					
@@ -205,7 +205,7 @@ module.exports = {
 				}
 				catch(e) {
 					
-					member.roles.remove(mongoData[0]?.verification_pending_role)
+					await member.roles.remove(mongoData[0]?.verification_pending_role)
 					await int.update({ components: [] }).catch(() => false)
 					
 					const embed = new EmbedBuilder()
@@ -256,6 +256,17 @@ module.exports = {
 						embeds: [embedex]
 					}))
 				}
+				
+				if(int.member.roles.cache.find(x => x.id == mongoData[0]?.member_role)) {
+					const embedex = new EmbedBuilder()
+					.setTitle('You already verified.')
+					.setColor('Random')
+
+					return int.reply(globalFunc.sendEphemeral({
+						embeds: [embedex]
+					}))
+				}
+				
 
 				const modal = new ModalBuilder()
 				.setCustomId('verification_modal_1')
@@ -370,8 +381,8 @@ module.exports = {
 						}
 							
 						
-						member.roles.add(mongoData[0]?.member_role)
-						member.roles.remove(mongoData[0]?.verification_pending_role)
+						await member.roles.add(mongoData[0]?.member_role)
+						await member.roles.remove(mongoData[0]?.verification_pending_role)
 
 						const USRX_DM = await member.createDM();
 						
@@ -449,7 +460,7 @@ module.exports = {
 							customMsg ?? `It seems like your submission denied on ${int.guild.name}. But you can reapplied again.`
 						)
 
-						member.roles.remove(mongoData[0]?.verification_pending_role)
+						await member.roles.remove(mongoData[0]?.verification_pending_role)
 
 						await int.update({ components: [] });
 						
