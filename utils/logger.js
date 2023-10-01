@@ -3,7 +3,7 @@ const { stripIndents, oneLine } = require('common-tags');
 const fs = require('fs');
 const path = `${process.cwd()}/utils/`;
 
-module.exports = function (type, client, reason) {
+module.exports = function (type, client, reason, nonError = false) {
 	// console.log(reason)
 	
 	if(process.env.crashHook) {
@@ -31,6 +31,25 @@ module.exports = function (type, client, reason) {
 						attachment: `${path}/error.txt`,
 					},
 				],
+			});
+		}
+
+		if(nonError) {
+			let embed = new EmbedBuilder()
+			.setTitle('General Logger')
+			.setDescription(stripIndents`
+			\`\`\`js
+			Type    : ${type}
+			\`\`\`
+   			${reason}
+   			`)
+			.setColor('Random')
+			.setTimestamp()
+
+			return Webhook.send({
+				username: `${client.user?.username || ''} Logger`,
+				avatarURL: client.user?.displayAvatarURL?.(),
+				embeds: [embed],
 			});
 		}
 
