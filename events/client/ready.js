@@ -9,7 +9,7 @@ module.exports = {
 		globalFunc.logger(
 			'Client Ready', 
 			client, 
-			`${client.user.username ?? client.user.tag} is Running.\n Initialized: <t:${Math.round(Date.now()/1000)}:R>`,
+			`>>> ${client.user.username ?? client.user.tag} is Running.\nInitialized: <t:${Math.round(Date.now()/1000)}:R>`,
 			true
 		)
 	}
