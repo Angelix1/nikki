@@ -150,6 +150,8 @@ module.exports = {
 				.setTitle('Your submission was received successfully!. Please wait for staff to review it.')
 				.setColor('Green')
 
+				await int.member.roles.add(serverData?.verification_pending_role)
+
 				return int.update(
 					globalFunc.sendEphemeral({ 
 						content: int.user.toString(), 
@@ -175,7 +177,7 @@ module.exports = {
 					})
 					
 					member.roles.remove(mongoData[0]?.verification_pending_role)
-										
+
 					await int.update({ components: [] })
 					
 					const embed = new EmbedBuilder()
