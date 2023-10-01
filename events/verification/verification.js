@@ -205,6 +205,7 @@ module.exports = {
 				}
 				catch(e) {
 					
+					member.roles.remove(mongoData[0]?.verification_pending_role)
 					await int.update({ components: [] }).catch(() => false)
 					
 					const embed = new EmbedBuilder()
@@ -360,7 +361,7 @@ module.exports = {
 							return int.followUp({ embeds: [embed2] })
 						}
 
-						if( member?.roles?.cache?.filter(x => x.id == mongoData[0]?.member_role) ) {
+						if( member?.roles?.cache?.find(x => x.id == mongoData[0]?.member_role) ) {
 							const embed2 = new EmbedBuilder()
 							.setTitle('User has already been approved')
 							.setColor('Red')
@@ -427,7 +428,7 @@ module.exports = {
 							return int.followUp({ embeds: [embed2] })
 						}
 						
-						if( member?.roles?.cache?.filter(x => x.id == mongoData[0]?.member_role) ) {
+						if( member?.roles?.cache?.find(x => x.id == mongoData[0]?.member_role) ) {
 							const embed2 = new EmbedBuilder()
 							.setTitle('User has already been approved')
 							.setColor('Red')
@@ -489,7 +490,7 @@ module.exports = {
 							return int.followUp({ embeds: [embed2] })
 						}
 						
-						if( member?.roles?.cache?.filter(x => x.id == mongoData[0]?.member_role) ) {
+						if( member?.roles?.cache?.find(x => x.id == mongoData[0]?.member_role) ) {
 							const embed2 = new EmbedBuilder()
 							.setTitle('User has already been approved')
 							.setColor('Red')
