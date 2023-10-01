@@ -30,8 +30,8 @@ module.exports = {
 				value: console.log,
 			},
 			logger: {
-				value: async (type, client, reason) => {
-					return Logger(type, client, reason);
+				value: async (...args) => {
+					return Logger(...args);
 				},
 			},
 			ago: {
