@@ -112,7 +112,7 @@ module.exports = {
 				// send to Staff
 				const ANS = new EmbedBuilder()
 				.setAuthor({
-					name: `${int.user.username} | ${int.user.id}`,
+					name: `${int.user.username} | ${int.user.id} | ${int.user?.toString?.()}`,
 					iconURL: int.user.displayAvatarURL({ extension: 'png', dynamic: false }),
 					url: int.user.displayAvatarURL({ extension: 'png', dynamic: false })
 				})
