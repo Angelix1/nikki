@@ -167,7 +167,15 @@ module.exports = {
 				const [userId, messageId] = sub.split('_');
 				const modInput = int.fields.getTextInputValue('reason')
 				
-				const member = await int.guild.members.fetch(userId);
+				const member = await int.guild.members.fetch(userId).catch(() => false);
+
+				if(!member) {					
+					const embed2 = new EmbedBuilder()
+					.setTitle('User Left')
+					.setColor('Red')
+					await int.update({ components: [] });
+					return int.followUp({ embeds: [embed2] })
+				}
 				
 				const US_DM = await member.createDM()
 
@@ -360,11 +368,11 @@ module.exports = {
 				const type = splitted[0];
 				
 				const Embed = new EmbedBuilder()
-				const member = await int.guild.members.fetch(UserID);
+				const member = await int.guild.members.fetch(UserID).catch(() => false);
 				
 				if(type == 'approve') {
 					try {
-						if(!member.user) {
+						if(!member) {
 							const embed2 = new EmbedBuilder()
 							.setTitle('User Left')
 							.setColor('Red')
@@ -431,7 +439,7 @@ module.exports = {
 				}
 				if(type == 'deny') {
 					try {
-						if(!member.user) {
+						if(!member) {
 							const embed2 = new EmbedBuilder()
 							.setTitle('User Left')
 							.setColor('Red')
@@ -493,7 +501,7 @@ module.exports = {
 				}
 				if(type == 'reverify') {
 					try {
-						if(!member.user) {
+						if(!member) {
 							const embed2 = new EmbedBuilder()
 							.setTitle('User Left')
 							.setColor('Red')
